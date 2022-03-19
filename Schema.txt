@@ -1,0 +1,26 @@
+1) User:
+	Name-String
+	Email-string, unique
+	Phone-numbers, unique
+	State-string
+	District-string
+	Address-string
+	Pincode-numbers
+	Password-string,required
+
+2)Orders:
+	Order id-string, required
+	User id:type: mongoose.types:object_id,reference:User
+	Store Address: string,required
+	City:string,required
+	Store phone:numbers, unique
+	Product type:string
+	Quantity:numbers
+	Wash:boolean(false)
+	Ironing:boolean(false)
+	Folding:boolean(false)
+	Packing:boolean(false)
+	Status:String,required
+
+	
+	
