@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 
 const app = express(); // create a new express application
 
-const MONGO_URI = "mongodb+srv://rilwanhaq:rilwan@123@mydatabase.xwidf.mongodb.net/laundryService?retryWrites=true&w=majority";
+const MONGO_URI = "mongodb+srv://laundryService:RGrFAtVdjsDeNIxq@mydatabase.xwidf.mongodb.net/laundryData?retryWrites=true&w=majority";
 mongoose.connect(MONGO_URI)
     .then(()=>{console.log("Connected to database")}).catch((err)=>{
     console.log(err.message);
