@@ -1,11 +1,14 @@
 const express = require('express');
 const mongoose = require('mongoose');
+var jwt = require('jsonwebtoken');
+const SECRET = "bacth8landaury";
 // const jwt = require('jsonwebtoken');
 // SECRET = "RESTAPI"
 const app = express(); // create a new express application
 //Initializing the Routes
 //const orderRoutes = require('.//routes//orders');
 const Route_login = require("./routes/login_and_register")
+const create_order=require("./routes/create-order")
 
 
 
@@ -20,9 +23,35 @@ mongoose.connect(MONGO_URI)
 });
 
 
+
+
 //Authorization
+app.use("/orders",(req,res,next)=>{
+    var token = req.headers.authorization.split("Bearer ")[1];
+    if(!token){
+        return res.status(401).json({
+            status:"failed",
+            message:"token is missing"
+        })
+    }
+    jwt.verify(token,SECRET,function(err,decoded){
+        if(err){
+            return res.status(401).json({
+                status:"failed",
+                message:"invalid token"
+            })
+        }
+        else{
+            req.user = decoded.data
+            next();
+        }
+    })
+})
+    
 app.use("/",Route_login)
+app.use("/",create_order)
 //app.use("/", orderRoutes)
+
 
 
 //connecting to the server
