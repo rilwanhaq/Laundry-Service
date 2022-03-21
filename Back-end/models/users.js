@@ -1,6 +1,8 @@
+
+// hello this is testing
+const mongoose  = require("mongoose")
 const mongoose = require('mongoose');
 const { Schema } = mongoose
-
 const userSchema = new Schema({
     name: { type: String },
     email: { type: String , unique:true},
@@ -11,7 +13,5 @@ const userSchema = new Schema({
     pincode: { type: String },
     password: {type: String, required:true}
 })
-
 const User = mongoose.model('User',userSchema)
-
 module.exports = User;
