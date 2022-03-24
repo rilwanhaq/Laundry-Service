@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 var jwt = require('jsonwebtoken');
+const cors = require("cors")
 const SECRET = "bacth8landaury";
 // const jwt = require('jsonwebtoken');
 // SECRET = "RESTAPI"
@@ -9,6 +10,7 @@ const app = express(); // create a new express application
 //const orderRoutes = require('.//routes//orders');
 const Route_login = require("./routes/login_and_register")
 const create_order=require("./routes/create-order")
+
 
 
 
@@ -47,7 +49,7 @@ app.use("/orders",(req,res,next)=>{
         }
     })
 })
-    
+ app.use(cors())   
 app.use("/",Route_login)
 app.use("/",create_order)
 //app.use("/", orderRoutes)
@@ -55,6 +57,6 @@ app.use("/",create_order)
 
 
 //connecting to the server
-app.listen(process.env.PORT || 3000,()=>{  // bind the connections on this port and listen to it
-    console.log(`laundry service listening on ${3000}`);
+app.listen(process.env.PORT || 5000,()=>{  // bind the connections on this port and listen to it
+    console.log(`laundry service listening on ${5000}`);
 })

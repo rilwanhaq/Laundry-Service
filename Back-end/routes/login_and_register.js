@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const User = require("../models/user");
 const bodyparser = require("body-parser");
+const emailvalidation = require("deep-email-validator")
 
 
 const bcrypt = require("bcrypt");
@@ -14,7 +15,9 @@ router.get("/details",async(req,res)=>{
     const user = await User.find()
     return res.json({
         status:"fetched successfully",
-        user
+        message:"fetched successfully",
+        user,
+        statuscheck:"success"
     })
 })
 //========================user Registration=====================// 
@@ -25,6 +28,13 @@ router.post("/register",body("email"), body("name"),body("phone"),body("password
         if (!errors.isEmpty()) {
             return res.status(400).json({ errors: errors.array() });
         }
+        const existinguser = await User.findOne({email:req.body.email})
+        if (existinguser){
+            return res.status(200).json({     
+                message:"user already registered",
+                statuscheck:"failed"
+            })
+        }
         //destructuring required body values
         const  {name, email, password,phone,state,district,address,pincode}= req.body;
         //======encoding user enter password while registrations===///
@@ -33,6 +43,7 @@ router.post("/register",body("email"), body("name"),body("phone"),body("password
             if(err){
                 res.status(400).json({
                     status: "failed",
+                    statuscheck:'failed',
                     message: "Invalid details"
                 })
             }
@@ -50,6 +61,8 @@ router.post("/register",body("email"), body("name"),body("phone"),body("password
             );
             res.json({
                 status: "success",
+                statuscheck:'success',
+                message:"data added database successfully",
                 user
             })
         });
@@ -57,6 +70,7 @@ router.post("/register",body("email"), body("name"),body("phone"),body("password
     } catch (e) {
         res.json({
             status: "failed",
+            statuscheck:'failed',
             message: e.message
         })
     }
@@ -69,61 +83,99 @@ router.post("/register",body("email"), body("name"),body("phone"),body("password
 // ,oneOf([body("email"),body("phone")]), body("password")
 //========================user login =====================// 
 
-router.post("/login",oneOf([body("email"),body("phone")]), body("password") ,async (req, res) => {
+router.post("/login",body("Bothemailphone"), body("password") ,async (req, res) => {
     try {
         //======checking validation must contain  email and password===//
        
      
         const errors = validationResult(req);
+
         if (!errors.isEmpty()) {
             return res.status(400).json({ errors: errors.array() });
         }
-        const {email, password,phone} = req.body;
-            
+
+        const {Bothemailphone,password} = req.body;
+
+        //=============== checking user enter details email or password =====//
+
+        //========validatating is user enter correct email or not=======///
+        function validateEmail(email) 
+                {
+                    var re = /\S+@\S+\.\S+/;
+                    return re.test(email);
+                }
+                
+                valid=validateEmail(Bothemailphone)
+                //=====valid it will goes if condition====////
+                if (valid){
+                var email = Bothemailphone
+                }else{
+                    console.log(Bothemailphone)
+                    //=======if here user enter not valid email ==checking valid phone ===//
+                    var check = parseInt(Bothemailphone)
+                    const validatenumber = typeof check
+                    console.log('type of' ,validatenumber)
+                   
+                    if (validatenumber === 'number'){
+                        var phone= Bothemailphone
+                    }else{
+                        return res.status(401).json({
+                            message:"enter valid email or phone number",
+                            statuscheck:'failed'
+                        })
+                    }
+                    }
         //========finding correct user with help of user email ======//
 
         if (email){
             const user = await User.findOne({email:email});
             if(!user){
-                res.status(401).json({
+               return res.status(401).json({
                     status:"failed",
+                    statuscheck:'failed',
                     message:"Invalid user"
                 })
         }
         bcrypt.compare(password, user.password).then(function(result) {
             if(result){
                 var token = jwt.sign({_id:user._id}, SECRET);
-                res.json({
+              return  res.json({
                     status: "sucess",
-                    token
+                    token,
+                    statuscheck:"success",
+                    message:'token generated'
                 })
             }else{
-                res.status(401).json({
+              return  res.status(401).json({
                     status: "failed",
-                    message: "Not Authenticated"
+                    message: "Not Authenticated",
+                    statuscheck:'failed'
                 })
             }
         });
         }else if (phone){
             const user = await User.findOne({phone:phone});
             if(!user){
-                res.status(401).json({
+              return  res.status(401).json({
                     status:"failed",
-                    message:"Invalid user"
+                    message:"Invalid user",
+                    statuscheck:'failed'
                 })
         }
         bcrypt.compare(password, user.password).then(function(result) {
             if(result){
                 var token = jwt.sign({data:user._id}, SECRET);
                 
-                res.json({
+              return  res.json({
                     status: "sucess",
-                    token
+                    token,
+                    statuscheck:'success'
                 })
             }else{
-                res.status(401).json({
+             return  res.status(401).json({
                     status: "failed",
-                    message: "Not Authenticated"
+                    message: "Not Authenticated",
+                    statuscheck:'failed'
                 })
             }
         });
@@ -135,9 +187,10 @@ router.post("/login",oneOf([body("email"),body("phone")]), body("password") ,asy
        
        
     } catch (e) {
-        res.json({
+       res.json({
             status: "user-failed",
-            message: e.message
+            message: e.message,
+            statuscheck:'failed'
         })
     }
 })
