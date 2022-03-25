@@ -9,8 +9,7 @@ import bluefold from "../images/bluefold.png"
 import whitefold from "../images/whitefold.png"
 import "../orders/Product_lists.css"
 
-function Product_type_lists(props) {
-    const {data,gettingOrders}=props   
+function Product_type_lists(props) {   
      const [wash,setwash]=useState(false)
     const [iron,setiron]=useState(false)
     const [press,setpress]=useState(false)
@@ -45,9 +44,7 @@ function Product_type_lists(props) {
       if (!wash){
           setcancel(true)
       }
-      Calculate_product_data()
-
-      
+  
     }
     const changeIron= ()=>{
   setiron(!iron)
@@ -55,7 +52,7 @@ function Product_type_lists(props) {
         if (!iron){
             setcancel(true)
         }
-        Calculate_product_data()
+    
  
     }
     const changePress= ()=>{
@@ -63,8 +60,8 @@ function Product_type_lists(props) {
         if (!press){
             setcancel(true)
         }
-    
-        Calculate_product_data()
+      
+     
     }
     const changeFold=   ()=>{
       setfold(!fold)
@@ -72,8 +69,9 @@ function Product_type_lists(props) {
         if (!fold){
             setcancel(true)
         }
+      
     
-        Calculate_product_data()
+        
     }
   
     const chageAlltype=()=>{
@@ -86,29 +84,31 @@ function Product_type_lists(props) {
         setquantity(0)
     }
   
-    useEffect=()=>{
-      
+    useEffect(()=>{
+      Calculate_product_data()
 
-      gettingOrders({
-        productType:data.productname,
-        wash:wash,
+      props.gettingOrders({
+        productType:props.productType,
+        value:{
+          quantity:quantity,
+          wash:wash,
         ironing:iron,
         Folding:fold,
         Packing:press,
-        price:price
+        price:price}
       })
  
-    }
+    })
   return (
 
       <tr className="table-body">
         <td className="product-name-img">
           <div className="product-img">
-            <img width={40} height={38} src={data.image} />
+            <img width={40} height={38} src={props.image} />
           </div>
           <div className="product-name-des">
-            <h3>{data.productname}</h3>
-            <p>{data.description}</p>
+            <h3>{props.productname}</h3>
+            <p>{props.description}</p>
           </div>
         </td>
         <td>
