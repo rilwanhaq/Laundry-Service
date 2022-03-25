@@ -1,6 +1,6 @@
 .parent-create-order{
     width: 100vw;
-    height: 100vh;
+    height: 150vh;
 }
 .parent{
     width:100vw;
@@ -198,7 +198,7 @@ position:fixed;
     align-items: center;
     justify-content: center;
     margin-left: 5%;
-    height:2%;
+    height:4%;
 }
 .footer-circle{
     margin: 0.5rem;

@@ -39,11 +39,11 @@ function Login() {
   setData({...data,[e.target.name]:e.target.value})
 }
   return (
-    <div class="login-parent">
+    <div className="login-parent">
     <Headercomponent registration={signin} action={path}/>
     <div className='login-details'>
-    <div class="login-btn">
-      <div class="login-details1">
+    <div  className="login-btn">
+      <div  className="login-details1">
      <h1>Laundry Service</h1>
      <p>Door Wash & Dryclean Service</p>
      </div>
