@@ -3,8 +3,11 @@ import React,{useState} from 'react'
 import {useHistory,Link} from "react-router-dom"
 import "../orders/Orderlists.css"
 import Product_type_lists from './Product_type_lists'
-import Summary from '../Summary/SummaryToCreate'
-import SummaryToCreate from '../Summary/SummaryToCreate'
+import OrderHeaderCompo from '../commanComponent/OrderHeaderCompo';
+import OrderFootercompo from '../commanComponent/OrderFootercompo';
+import Order_Side_Bar from '../commanComponent/Order_Side_Bar';
+import Searchcompo from '../commanComponent/Searchcompo';
+import SummaryToCreate from "../Summary/SummaryToCreate"
 
 
 
@@ -71,16 +74,8 @@ return
     ]
   return (
     <div className='parent-orderlists'>
-    <div class="header">
-     <div class="nav-bar">
-        <h1>Laundry</h1>
-      </div>
-      <div class="navbar">
-          <a href="#"><p>Pricing</p></a>
-          <a href="#"><p>Career</p></a>
-          <button>User Name</button>
-      </div>
-      </div>
+   <OrderHeaderCompo />
+     <Order_Side_Bar/>
       <div className='orderlists-table'>
       <div className='parent-div'>
            <div className='nav-home'></div>
@@ -92,13 +87,7 @@ return
           <div className='create-order-page'>
                <div className='ordercount-search'>
                  <h2>Create Order</h2>
-                 <div className='search_container'>
-                <div className='search_box'>
-                    <div className='search_icon'>
-                        
-                    </div>
-            </div>
-        </div>
+         <Searchcompo/>
                     
                 </div>
                 <div  className='table-orderlists'>
@@ -136,12 +125,8 @@ return
               <button onClick={()=>{setSummary(true)}} className='proceed-btn'>Proceed</button>
             </div>
 
-          {showSummary && <SummaryToCreate showSummary={showSummary}  OrderedItems={ OrderedItems}/>}
-      <footer className='footer-component'>
-                    <p>2022</p>
-                    <div className='footer-circle'>C</div>
-                    <p>Laundry</p>
-            </footer>
+          {showSummary && <SummaryToCreate showSummary={showSummary}  OrderedItems={OrderedItems}/>}
+      <OrderFootercompo/>
       
     </div>
   )

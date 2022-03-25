@@ -89,7 +89,9 @@ function Product_type_lists(props) {
 
       props.gettingOrders({
         productType:props.productType,
-        value:{wash:wash,
+        value:{
+          quantity:quantity,
+          wash:wash,
         ironing:iron,
         Folding:fold,
         Packing:press,

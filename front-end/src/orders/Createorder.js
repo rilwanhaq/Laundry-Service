@@ -2,8 +2,12 @@ import React from 'react'
 
 //import Sidebar from '../components/Side-bar'
 import "../orders/Createorder.css"
+import OrderHeaderCompo from '../commanComponent/OrderHeaderCompo'
 
 import {useHistory,Link} from "react-router-dom"
+import Order_Side_Bar from '../commanComponent/Order_Side_Bar'
+import OrderFootercompo from '../commanComponent/OrderFootercompo'
+import Searchcompo from '../commanComponent/Searchcompo'
 
 
 function Createorder() {
@@ -14,32 +18,13 @@ function Createorder() {
 
   return (
     <div className='parent-create-order'>
-        <div class="header">
-     <div class="nav-bar">
-        <h1>Laundry</h1>
-      </div>
-      <div class="navbar">
-          <a href="#"><p>Pricing</p></a>
-          <a href="#"><p>Career</p></a>
-          <button>User Name</button>
-      </div>
-      </div>
+      <OrderHeaderCompo/>
        <div  className='side-bar-btn'>
-          <div className='parent-div'>
-           <div className='nav-home'></div>
-            <Link to="/past-orders"><div className='nav-create'></div></Link>
-            <Link to="/orders-page"><div className='nav-show'></div></Link>
-           </div>
+          <Order_Side_Bar/>
            <div className='create-order-page'>
                <div className='ordercount-search'>
                  <h2>Orders | 0</h2>
-                 <div className='search_container'>
-                <div className='search_box'>
-                    <div className='search_icon'>
-                        
-                    </div>
-            </div>
-        </div>
+        <Searchcompo/>
                     
                 </div>
             </div>
@@ -48,11 +33,7 @@ function Createorder() {
                <div className='create-order-btn'>
                 <button onClick={changeRoute}>Create</button>
                </div>
-               <footer className='footer-component'>
-                    <p>2022</p>
-                    <div className='footer-circle'>C</div>
-                    <p>Laundry</p>
-            </footer>
+         <OrderFootercompo/>
            </div>
     
       
