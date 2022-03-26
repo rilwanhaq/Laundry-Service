@@ -2,8 +2,8 @@ import React from 'react';
 
 function Summary_data(props) {
   return (
-    <div>
-      <tr cellspacing={5}>
+    
+      <tr >
         <td className="product__type">{props.items.productType}</td>
         <td className="product__washtype">
           {[
@@ -25,7 +25,6 @@ function Summary_data(props) {
         </td>
         <td className="product__price">{props.items.value.price}</td>
       </tr>
-    </div>
   );
 }
 

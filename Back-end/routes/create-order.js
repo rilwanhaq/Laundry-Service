@@ -15,9 +15,8 @@ router.post("/orders", async (req, res) => {
     try{
     const order = await Order.create({ 
         order_id:Date.now(),
-        user_data: req.user,
-        status : req.body.status,
         order_details : req.body.order_details,
+        totalcost:req.body.totalcost
     })
     return res.status(200).json({
         status: "Order is created", 

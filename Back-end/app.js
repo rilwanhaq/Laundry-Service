@@ -7,7 +7,7 @@ const SECRET = "bacth8landaury";
 // SECRET = "RESTAPI"
 const app = express(); // create a new express application
 //Initializing the Routes
-//const orderRoutes = require('.//routes//orders');
+const orderRoutes = require('.//routes//orders');
 const Route_login = require("./routes/login_and_register")
 const create_order=require("./routes/create-order")
 
@@ -24,11 +24,16 @@ mongoose.connect(MONGO_URI)
     console.log(err.message);
 });
 
-
-
+app.use(cors())
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+  });
 
 //Authorization
 app.use("/orders",(req,res,next)=>{
+
     var token = req.headers.authorization.split("Bearer ")[1];
     if(!token){
         return res.status(401).json({
@@ -40,6 +45,7 @@ app.use("/orders",(req,res,next)=>{
         if(err){
             return res.status(401).json({
                 status:"failed",
+                
                 message:"invalid token"
             })
         }
@@ -49,10 +55,16 @@ app.use("/orders",(req,res,next)=>{
         }
     })
 })
- app.use(cors())   
+
+
+
+   
 app.use("/",Route_login)
+
 app.use("/",create_order)
-//app.use("/", orderRoutes)
+
+app.use("/", orderRoutes)
+
 
 
 

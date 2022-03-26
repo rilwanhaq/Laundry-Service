@@ -8,6 +8,7 @@ import Login from "./login/Login"
 import {BrowserRouter,Switch,Route} from "react-router-dom";
 import Createorder from './orders/Createorder';
 import Orderlists from './orders/Orderlists';
+// import OrderPage from './orders/OrderPage';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
       <Route path="/register"   exact><Register/></Route>
       <Route path='/orders' exact  ><Createorder/></Route>
       <Route path='/orderlists' exact  ><Orderlists/></Route>
+      {/* <Route path='order-past' exact><OrderPage/></Route> */}
        </Switch>
     </div>
   </BrowserRouter>
