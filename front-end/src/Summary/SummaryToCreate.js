@@ -9,28 +9,35 @@ function SummaryToCreate(props) {
  console.log(props.OrderedItems)
     const [disabled,setDisabled] = useState(true)
    const Userorderdetails = []
-   const finalOrderdetails=[]
- 
-
-
-    const washType = []
-    const washPrice = []
-    const Price = []
-
+   const  order_details=[]
 
     const handleForm = () =>{
         setStoreNo("+91 9999999999")
         setStoreAddress("Near phone Booth, 10th road")
         setDisabled(false)
     }
-    const handleSubmitClick = () => {
+    const handleSubmitClick =async() => {
+       
+       await  Userorderdetails.forEach((items)=>{
+        order_details.push({productType:items.productType,...items.value})
+           })
+         
+           
+      
+           let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjNlYTdmMjQ1ZTBlOGRkZjRiY2IzNjYiLCJpYXQiOjE2NDgyNzQxMDJ9.RC2R-YkSpC25FX4nVRncTTQNdzC7GQW9VJxWSQJRTO0"
+        let config=  {headers: { Authorization: `Bearer ${token}` }}
+        
+     
+        axios.post('http://localhost:5000/orders',{order_details,totalcost:props.totalcost},config)
+        .then((res)=>{
+            console.log(res)
+        })
+        .catch((err)=>{
+            console.log(err)
+        })
+
         // props.handleSummaryClose()
         // props.handleConfirmationPopup()
-        Userorderdetails.forEach((items)=>{
-            finalOrderdetails.push({productType:items.productType,...items.value})
-           })
-           
-        console.log(finalOrderdetails,'final')
     }
     
     return (
@@ -69,6 +76,7 @@ function SummaryToCreate(props) {
                                 (items.value.quantity>0) &&
                               (items.value.wash || items.value.ironing||items.value.Folding||items.value.Packing)&&(
                                 Userorderdetails.push(items),
+                                +items.value.price,
                                     <Summary_data items={items}/>
                                     
                             ))
@@ -77,19 +85,21 @@ function SummaryToCreate(props) {
                             <tr>
                                 <td /><td />
                                 <td>Sub total:</td>
-                                <td style={{ fontWeight: "bold" }}>360rs</td>
+                                <td style={{ fontWeight: "bold" }}>{props.totalcost}</td>
                             </tr>
                             <tr>
-                                <td /><td />
+                                <td></td>
+                                <td></td>
                                 <td>Pickup Charges:</td>
                                 <td style={{ fontWeight: "bold" }}>90</td>
                             </tr>
                             <tr className='product__total'>
-                                <td ></td >
-                                <td>
+                                <td></td>
+                                <td></td>
+                                <td colSpan={1}>
                                     Total:
                                 </td>
-                                <td>Rs 520</td>
+                                <td>{ props.totalcost+90}</td>
                             </tr>
                         </tbody>
                     </table>

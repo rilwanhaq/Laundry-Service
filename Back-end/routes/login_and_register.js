@@ -28,15 +28,34 @@ router.post("/register",body("email"), body("name"),body("phone"),body("password
         if (!errors.isEmpty()) {
             return res.status(400).json({ errors: errors.array() });
         }
-        const existinguser = await User.findOne({email:req.body.email})
-        if (existinguser){
+                    //destructuring required body values
+     const  {name, email, password,phone,state,district,address,pincode}= req.body;
+     var re = /\S+@\S+\.\S+/;
+        valid=re.test(email)
+           var re = /\S+@\S+\.\S+/;
+        
+             
+        if (!valid){
+            return res.status(401).json({
+                
+                statuscheck:"failed",
+                message:"enter valid email",
+              
+            })
+        }
+   
+        const existinguseremail = await User.findOne({email:email})
+        const existinguserwithphone = await User.findOne({phone:phone})
+        if (existinguseremail || existinguserwithphone){
             return res.status(200).json({     
                 message:"user already registered",
                 statuscheck:"failed"
             })
         }
-        //destructuring required body values
-        const  {name, email, password,phone,state,district,address,pincode}= req.body;
+    
+        
+     
+ 
         //======encoding user enter password while registrations===///
         bcrypt.hash(password, 10, async function(err, hash) {
          

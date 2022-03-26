@@ -125,7 +125,12 @@ return
               <button onClick={()=>{setSummary(true)}} className='proceed-btn'>Proceed</button>
             </div>
 
-          {showSummary && <SummaryToCreate showSummary={showSummary}  OrderedItems={OrderedItems}/>}
+          {showSummary && <SummaryToCreate showSummary={showSummary} 
+                  totalcost={ OrderedItems
+                    .map((order) => order.value.price)
+                    .reduce(
+                    (totalprice, currentprice) =>totalprice + parseInt( currentprice, 10), 0)}
+                    OrderedItems={OrderedItems}/>}
       <OrderFootercompo/>
       
     </div>

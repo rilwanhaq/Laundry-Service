@@ -9,7 +9,7 @@ router.use(bodyParser());
 router.get('/orders', async (req, res) => {
     try{
         const orders = await Order.find({user: req.user});
-        res.status(200).json({
+        return res.status(200).json({
             status: 'success',
             orders
         });
