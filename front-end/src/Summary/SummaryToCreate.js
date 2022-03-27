@@ -10,9 +10,6 @@ function SummaryToCreate(props) {
     const [disabled,setDisabled] = useState(true)
    const Userorderdetails = []
    const  order_details=[]
-   const totalcost=props.totalcost+90
-   const totalquantity=props.totalquantity
-   const order_id = "ORDID"+Math.floor(Math.random()*1000)
 
     const handleForm = () =>{
         setStoreNo("+91 9999999999")
@@ -31,7 +28,7 @@ function SummaryToCreate(props) {
         let config=  {headers: { Authorization: `Bearer ${token}` }}
         
      
-        axios.post('http://localhost:5000/orders',{order_details, totalcost,totalquantity,order_id},config)
+        axios.post('http://localhost:5000/orders',{order_details,totalcost:props.totalcost},config)
         .then((res)=>{
             console.log(res)
         })

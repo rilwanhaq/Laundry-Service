@@ -5,8 +5,6 @@ const orderSchema = new Schema({
 
   order_id:{type:String,required:true},
   user_data:{type: Schema.Types.ObjectId,reference:'User'},
-  totalcost:{type:Number},
-  totalquantity:{type:Number},
   order_details:[
     {productType: { type: String },
     quantity: { type: Number, default: 0 },
@@ -14,11 +12,7 @@ const orderSchema = new Schema({
     ironing: { type: Boolean, default: false },
     Folding: { type: Boolean, default: false },
     Packing: { type: Boolean, default: false },
-    price:{type:Number,default:"---"},
-    
-  },
- 
-  
+    price:{type:Number,default:"---"},}
 
   ],
   
