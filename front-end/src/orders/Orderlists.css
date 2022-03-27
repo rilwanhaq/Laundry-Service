@@ -1,10 +1,10 @@
 .parent-orderlists{
-    width: 100vw;
-    height:150vh;
+    width: auto;
+    height:auto;
 }
 .table-orderlists{
     position: absolute;
-        margin-left: 12%;
+        margin-left: 8%;
         margin-top:1%;
        
 }

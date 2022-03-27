@@ -1,4 +1,5 @@
 import React from 'react'
+import { removeToken } from '..//utils//authenticationOperations';
 
 function orderHeaderCompo() {
   return (
@@ -10,7 +11,7 @@ function orderHeaderCompo() {
       <div class="navbar">
           <a href="#"><p>Pricing</p></a>
           <a href="#"><p>Career</p></a>
-          <button>User Name</button>
+          <a className='logout' onClick={() => { removeToken() }} href="/">Logout</a>
       </div>
       </div>
     </div>

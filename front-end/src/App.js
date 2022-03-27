@@ -8,7 +8,9 @@ import Login from "./login/Login"
 import {BrowserRouter,Switch,Route} from "react-router-dom";
 import Createorder from './orders/Createorder';
 import Orderlists from './orders/Orderlists';
-// import OrderPage from './orders/OrderPage';
+import OrderPage from './/orders/OrderPage';
+import OrderConfirm from "./commanComponent//OrderConfirm"
+import PrivateRoute from "./PrivateRoute/PrivateRoute";
 
 function App() {
   return (
@@ -18,9 +20,10 @@ function App() {
     <Switch>
       <Route  path="/" exact component={Login}/>
       <Route path="/register"   exact><Register/></Route>
-      <Route path='/orders' exact  ><Createorder/></Route>
-      <Route path='/orderlists' exact  ><Orderlists/></Route>
-      {/* <Route path='order-past' exact><OrderPage/></Route> */}
+      <PrivateRoute path='/orders' exact  ><Createorder/></PrivateRoute>
+      <PrivateRoute path='/orderlists' exact  ><Orderlists/></PrivateRoute>
+      <PrivateRoute path='/orderPage' exact  ><OrderPage/></PrivateRoute>
+      <PrivateRoute path='/orderc' exact  ><OrderConfirm/></PrivateRoute>
        </Switch>
     </div>
   </BrowserRouter>

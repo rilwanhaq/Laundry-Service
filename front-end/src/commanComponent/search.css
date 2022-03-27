@@ -1,0 +1,27 @@
+.order_search_box{
+    width: 8vw;
+    text-align: left;
+    height: 20.79px;
+    padding: 0;
+    margin: 0;
+    border-bottom: 2px solid #00000029;
+    transition: 0.1s;
+}
+
+.order_search_icon{
+    background: url("../images/search-logo.png") no-repeat;
+    height: 14.05px;
+    width: 14.05px;
+    transition: 0.4s;
+}
+
+.order_search_container:hover .order_search_box{
+    transform:translateY(4px);
+    border-color: #1D377E;
+}
+.order_search_container:hover .order_search_icon{
+    padding: 0;
+    margin: 0;
+    background: url("../images/search-hover.png") no-repeat;
+    transform: translateY(-4px);
+}

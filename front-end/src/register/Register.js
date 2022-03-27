@@ -90,7 +90,7 @@ function Register() {
        <br/>
        <input type="text" name="address" required  onChange={ changeData}   placeholder='Address' />
        <br/>
-       <input type="text" name="password"  required  onChange={ changeData}   placeholder='password'/>
+       <input type="password" name="password"  required  onChange={ changeData}   placeholder='password'/>
    
       
       </div>

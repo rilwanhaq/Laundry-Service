@@ -61,7 +61,7 @@ function Login() {
       <h1>SIGN IN</h1>
       <input type="text" name="Bothemailphone" onChange ={changeData} placeholder="Mobile/Email"></input>
       <br/>
-      <input type="text"  name='password' onChange ={changeData}  placeholder='Password'></input>
+      <input type="password"  name='password' onChange ={changeData}  placeholder='Password'></input>
       <p>Forget password?</p>
         <button onClick={routeorder}>
           Sign in
