@@ -34,7 +34,7 @@ function OrderPage() {
             setordCount(res.data.orders.length)
         })
     },[])
-    // console.log(orders)
+
     const dummyData = orders
     
     
@@ -124,17 +124,17 @@ function OrderPage() {
                             +91 99 88 66 77 55
                         </td>
                         <td onClick={() => viewSummary(order)}>
-                            {order.order_details.quantity}
+                            {order.totalquantity}
                         </td>
                         <td className='price' onClick={() => viewSummary(order)}>
-                        Rs {order.order_details.price}
+                        Rs {order.totalcost}
                         </td>
-                        <td style={statusStyle} onClick={() => viewSummary(order)}>
+                        <td onClick={() => viewSummary(order)} style={statusStyle}>
                             {order.status}
                         </td>
                         <td >
                         {cancel &&
-                                <button onClick={() => alertCancel(order, index)} className='table__button cancel'>Cancel Order</button>}
+                        <td  onClick={() => alertCancel(order, index)} style={statusStyle}>Cancel Order</td>}
                         </td>
                         <td onClick={() => viewSummary(order)}>
                             <img className="view" src={eye} alt='view' />
