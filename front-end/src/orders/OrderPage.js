@@ -58,7 +58,7 @@ function OrderPage() {
     const toggleSummaryPopup = () => {
         setSummaryIsOpen(!summaryIsOpen)
     }
-
+    
     const table_heading = ["Order id", "Order Date & Time", "Store Location", "City", "Store Phone", "Total Items", "Price", "Status", "            ", "View"]
     return (
         <div className='parentOrd'>
@@ -92,10 +92,10 @@ function OrderPage() {
                         coloChange = "#0000"
                     }
                     let cancel = false
-                    if (order.status === "Ready to Pickup") {
+                    if (order.status === "ready to pick") {
                         cancel = true
                     }
-
+                    
                     let statusStyle = {
                         color: "black",
                         fontWeight: "normal"
@@ -115,7 +115,7 @@ function OrderPage() {
                             {Date().slice(3, 21)}
                         </td>
                         <td onClick={() => viewSummary(order)}>
-                            Jp Nagar
+                            Jp Naga
                         </td>
                         <td onClick={() => viewSummary(order)}>
                             Bangalore
@@ -133,8 +133,8 @@ function OrderPage() {
                             {order.status}
                         </td>
                         <td >
-                        {cancel &&
-                        <td  onClick={() => alertCancel(order, index)} style={statusStyle}>Cancel Order</td>}
+                            {cancel &&
+                         <button  onClick={() => alertCancel(order, index)} className='table__button cancel'>Cancel Order</button>}
                         </td>
                         <td onClick={() => viewSummary(order)}>
                             <img className="view" src={eye} alt='view' />
