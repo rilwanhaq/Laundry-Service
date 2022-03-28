@@ -5,7 +5,7 @@ import "../orders/Orderlists.css"
 import Product_type_lists from './Product_type_lists'
 import OrderHeaderCompo from '../commanComponent/OrderHeaderCompo';
 import OrderFootercompo from '../commanComponent/OrderFootercompo';
-import Order_Side_Bar from '../commanComponent/Order_Side_Bar';
+import Order_Side_Bar from '../commanComponent//Order_Side_Bar';
 import Searchcompo from '../commanComponent/Searchcompo';
 import SummaryToCreate from "../Summary/SummaryToCreate"
 
@@ -17,6 +17,13 @@ let totalorders={ orderId: "orderId", userId: "userId",details: new Map()  }
 let OrderedItems=[]
 function Orderlists() {
   const [showSummary,setSummary]=useState(false)
+  const [summaryIsOpen, setSummaryIsOpen] = useState(false);
+
+  const toggleSummaryPopup = () => {
+    setSummaryIsOpen(!summaryIsOpen)
+}
+
+
 
  function  callbackFunction(props){
   totalorders.details.set(props.productType,props.value)
@@ -77,13 +84,6 @@ return
    <OrderHeaderCompo />
      <Order_Side_Bar/>
       <div className='orderlists-table'>
-      <div className='parent-div'>
-           <div className='nav-home'></div>
-            <Link to="/past-orders"><div className='nav-create'></div></Link>
-            <Link to="/orders-page"><div className='nav-show'></div></Link>
-           </div>
-     
-         
           <div className='create-order-page'>
                <div className='ordercount-search'>
                  <h2>Create Order</h2>
@@ -125,7 +125,8 @@ return
               <button onClick={()=>{setSummary(true)}} className='proceed-btn'>Proceed</button>
             </div>
 
-          {showSummary && <SummaryToCreate showSummary={showSummary} 
+          {showSummary && <SummaryToCreate showSummary={showSummary}
+                  handleSummaryClose={toggleSummaryPopup} 
                   totalcost={ OrderedItems
                     .map((order) => order.value.price)
                     .reduce(

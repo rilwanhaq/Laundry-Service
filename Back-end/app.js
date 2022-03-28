@@ -12,7 +12,12 @@ const Route_login = require("./routes/login_and_register")
 const create_order=require("./routes/create-order")
 
 
-
+const corsOptions ={
+    origin:'*', 
+    credentials:true,            //access-control-allow-credentials:true
+    optionSuccessStatus:200,
+ }
+ app.use(cors(corsOptions))  
 
 
 

@@ -2,6 +2,8 @@ import React, {useState} from 'react'
 import "../Summary/summary.css";
 import axios from 'axios';
 import Summary_data from './Summary_data';
+import Summary from './/Summary';
+import { useHistory } from "react-router-dom";
 
 function SummaryToCreate(props) {
     const [storeNo,setStoreNo] = useState("")
@@ -11,22 +13,31 @@ function SummaryToCreate(props) {
    const Userorderdetails = []
    const  order_details=[]
 
+
+   const totalcost=props.totalcost+90
+   const totalquantity=props.totalquantity
+   const order_id = "ORDID"+Math.floor(Math.random()*1000)
+
+
+
     const handleForm = () =>{
         setStoreNo("+91 9999999999")
         setStoreAddress("Near phone Booth, 10th road")
         setDisabled(false)
     }
+
     const handleSubmitClick =async() => {
        
-       await  Userorderdetails.forEach((items)=>{
-        order_details.push({productType:items.productType,...items.value})
-           })
+        await  Userorderdetails.forEach((items)=>{
+         order_details.push({productType:items.productType,...items.value})
+            })
+          
+            
+       
+        const token = localStorage.getItem("token")
+         let config=  {headers: { Authorization: `Bearer ${token}` }}
          
-           
-      
-           let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjNlYTdmMjQ1ZTBlOGRkZjRiY2IzNjYiLCJpYXQiOjE2NDgyNzQxMDJ9.RC2R-YkSpC25FX4nVRncTTQNdzC7GQW9VJxWSQJRTO0"
-        let config=  {headers: { Authorization: `Bearer ${token}` }}
-        
+
      
         axios.post('http://localhost:5000/orders',{order_details,totalcost:props.totalcost},config)
         .then((res)=>{
@@ -35,17 +46,14 @@ function SummaryToCreate(props) {
         .catch((err)=>{
             console.log(err)
         })
-
-        // props.handleSummaryClose()
-        // props.handleConfirmationPopup()
-    }
+     }
     
     return (
         <div className='popup-box'>
             <div className='summary__box'>
                 <div className='summary__header'>
                     Summary
-                    <button className='summary__btn__close'>x</button>
+                    <button className='summary__btn__close' onClick={props.handleSummaryClose}>x</button>
                 </div>
                 <div className='summary__storeinfo'>
                     <div className='store__detail'>
@@ -118,7 +126,7 @@ function SummaryToCreate(props) {
                 </div>
 
                 <div className='summary__footer'>
-                    <button className="submit__button" disabled={disabled} onClick={handleSubmitClick} >Submit</button>
+                    <button className="submit__button" disabled={disabled} onClick={handleSubmitClick} >Confirm</button>
                 </div>
 
             </div>
@@ -128,4 +136,4 @@ function SummaryToCreate(props) {
 
 }
 
-export default SummaryToCreate
+export default SummaryToCreate;

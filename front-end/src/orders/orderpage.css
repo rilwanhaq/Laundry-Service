@@ -1,0 +1,85 @@
+.parentOrd{
+    width:95vw;
+}
+.order{
+    width: 90vw;
+    margin-left: 5vw;
+    padding: 8rem;
+}
+.ordeCount{
+    margin-left: 15vh;
+}
+.head-button{
+    margin-left: 130vh;
+    background-color: #FFFFFF;
+    color: #5861AE;
+    width: 100px;
+    height: 32px;
+    border: 1px solid #5861AE;
+    border-radius: 4px;
+    opacity: 1;
+    cursor: pointer;
+}
+.top_srch_btn{
+   float: right;
+    margin-right: 17vw;
+}
+.orders__table {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    position: absolute;
+    left: 89px;
+    font-size: 13px;
+    width: 1160px;
+    top: 35vh;
+    
+}
+
+.orders__table td{
+padding: 9px 10px;
+border-bottom: 1px solid #EAEDF0;
+box-sizing: border-box;
+height: 50px;
+vertical-align: middle;
+
+}
+
+.orders__table td:hover{
+cursor: pointer;
+}
+
+.orders__table th{
+padding: 9px 10px;
+font-weight: 550;
+
+}
+.orders__table thead th {
+padding-top: 12px;
+padding-bottom: 12px;
+text-align: left;
+background-color: #383737;
+color: white;
+}
+.cancel{
+    color: red;
+    opacity: 1;
+
+}
+
+.table__button{
+    border: none;
+    background: transparent;
+}
+
+.cancel:hover{
+    cursor: pointer;
+}
+
+.view{
+  height: 10.48px;
+  width: 16.74px;
+}
+
+.view:hover{
+  cursor: pointer;
+}
