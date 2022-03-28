@@ -20,7 +20,7 @@ function Login() {
 
  const routeorder=()=>{
    console.log(data)
-   axios.post("http://localhost:5000/login",data,{
+   axios.post("https://backend-laundry.herokuapp.com/login",data,{
     headers:{
       "Content-Type":"application/json"
         }

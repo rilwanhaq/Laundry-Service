@@ -17,7 +17,7 @@ function Alert(props) {
         }
 
         let id=props.id;
-        axios.put(`http://localhost:5000/orders/${id}`, {}, config)
+        axios.put(`https://backend-laundry.herokuapp.com/orders/${id}`, {}, config)
             .then(res => {
                 props.handleClose();
                 window.location.href = '/orderPage';

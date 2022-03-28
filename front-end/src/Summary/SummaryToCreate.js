@@ -40,7 +40,7 @@ function SummaryToCreate(props) {
          
 
      
-        axios.post('http://localhost:5000/orders',{order_details,totalcost:props.totalcost},config)
+        axios.post('https://backend-laundry.herokuapp.com/orders',{order_details,totalcost:props.totalcost},config)
         .then((res)=>{
             console.log(res)
         })

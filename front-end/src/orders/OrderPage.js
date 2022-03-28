@@ -24,7 +24,7 @@ function OrderPage() {
     const token = localStorage.getItem("token")
     useEffect(() => {
 
-        axios.get(`http://localhost:5000/orders`, {
+        axios.get(`https://backend-laundry.herokuapp.com/orders`, {
             headers: {
                 Authorization: 'Bearer ' + token
             }

@@ -25,7 +25,7 @@ function Register() {
   }
   const submitData=()=>{
     console.log(data)
-    axios.post("http://localhost:5000/register",data,{
+    axios.post("https://backend-laundry.herokuapp.com/register",data,{
       headers:{
         "Content-Type":"application/json"
           }
