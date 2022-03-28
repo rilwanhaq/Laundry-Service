@@ -55,7 +55,7 @@ app.use("/orders",(req,res,next)=>{
             })
         }
         else{
-            userdetails = decoded.data
+            req.user = decoded.data
             next();
         }
     })

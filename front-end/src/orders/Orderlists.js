@@ -131,10 +131,6 @@ return
                     .map((order) => order.value.price)
                     .reduce(
                     (totalprice, currentprice) =>totalprice + parseInt( currentprice, 10), 0)}
-                    totalquantity={ OrderedItems
-                      .map((order) => order.value.quantity)
-                      .reduce(
-                      (totalquan, currentquan) =>totalquan +  parseInt( currentquan, 10), 0)}
                     OrderedItems={OrderedItems}/>}
       <OrderFootercompo/>
       
