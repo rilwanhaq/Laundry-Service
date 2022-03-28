@@ -17,6 +17,7 @@ function SummaryToCreate(props) {
    const totalcost=props.totalcost+90
    const totalquantity=props.totalquantity
    const order_id = "ORDID"+Math.floor(Math.random()*1000)
+    const history = useHistory();
 
 
 
@@ -46,14 +47,18 @@ function SummaryToCreate(props) {
         .catch((err)=>{
             console.log(err)
         })
+            history.push('/orderc')
      }
     
+     
     return (
         <div className='popup-box'>
             <div className='summary__box'>
                 <div className='summary__header'>
                     Summary
-                    <button className='summary__btn__close' onClick={props.handleSummaryClose}>x</button>
+                    <button className='summary__btn__close' onClick={()=>{
+                        history.push('/orders')
+                    }}>x</button>
                 </div>
                 <div className='summary__storeinfo'>
                     <div className='store__detail'>
