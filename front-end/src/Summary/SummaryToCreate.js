@@ -47,6 +47,7 @@ function SummaryToCreate(props) {
             history.push('/orderc')
      }
     
+     
     return (
         <div className='popup-box'>
             <div className='summary__box'>
